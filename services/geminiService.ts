@@ -60,8 +60,8 @@ export const analyzeFights = async (
     Weight Class: ${weightClass}
 
     Please provide a detailed analysis covering:
-    1. For ${fighterName}: A list of strengths, a list of weaknesses, and a description of their fighting style.
-    2. For ${opponentName}: A list of strengths, a list of weaknesses, and a description of their fighting style.
+    1. For ${fighterName}: A list of strengths, a list of weaknesses, a list of fighting patterns and habits with excruciating details and a description of their fighting style.
+    2. For ${opponentName}: A list of strengths, a list of weaknesses, a list of fighting patterns and habits with excruciating details and a description of their fighting style.
     3. A head-to-head prediction with a confidence score (from 0 to 100).
     4. A recommended game plan for ${fighterName} to defeat ${opponentName}, including an overall strategy, a list of key tactics, and a list of specific drills to practice.
 
@@ -76,6 +76,8 @@ export const analyzeFights = async (
                 description: `Analysis for ${fighterName}.`,
                 properties: {
                     strengths: { type: Type.ARRAY, items: { type: Type.STRING }, description: "List of strengths." },
+                    fightingPattern: { type: Type.ARRAY, items: { type: Type.STRING }, description: "List of fighting patterns." },
+                    fightingHabits: { type: Type.ARRAY, items: { type: Type.STRING }, description: "List of fighting habits." },
                     weaknesses: { type: Type.ARRAY, items: { type: Type.STRING }, description: "List of weaknesses." },
                     fightingStyle: { type: Type.STRING, description: "Description of fighting style." },
                 },
@@ -85,6 +87,8 @@ export const analyzeFights = async (
                 description: `Analysis for ${opponentName}.`,
                 properties: {
                     strengths: { type: Type.ARRAY, items: { type: Type.STRING }, description: "List of strengths." },
+                    fightingPattern: { type: Type.ARRAY, items: { type: Type.STRING }, description: "List of fighting patterns." },
+                    fightingHabits: { type: Type.ARRAY, items: { type: Type.STRING }, description: "List of fighting habits." },
                     weaknesses: { type: Type.ARRAY, items: { type: Type.STRING }, description: "List of weaknesses." },
                     fightingStyle: { type: Type.STRING, description: "Description of fighting style." },
                 },
@@ -108,7 +112,7 @@ export const analyzeFights = async (
             },
         }
     };
-    
+
     // Using a multimodal model to analyze video and text.
     const response = await ai.models.generateContent({
         model: 'gemini-2.5-flash',
@@ -128,7 +132,7 @@ export const analyzeFights = async (
     });
 
     const jsonString = response.text.trim();
-    
+
     try {
         const parsedResult = JSON.parse(jsonString);
         return parsedResult as AnalysisResult;

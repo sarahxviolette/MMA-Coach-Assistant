@@ -63,7 +63,7 @@ export const ResultsSection: React.FC<ResultsSectionProps> = ({
                     <p className="font-semibold text-gray-800">{headToHead.prediction}</p>
                     <p className="text-sm text-gray-600">Confidence: {headToHead.confidence}%</p>
                 </InsightCard>
-                
+
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                      <InsightCard title={`${fighterName || 'Fighter'}'s Profile`}>
                          <h5 className="font-semibold mt-2">Style:</h5>
@@ -76,6 +76,14 @@ export const ResultsSection: React.FC<ResultsSectionProps> = ({
                          <ul className="list-disc list-inside">
                              {fighterAnalysis.weaknesses.map((w, i) => <li key={i}>{w}</li>)}
                          </ul>
+                         <h5 className="font-semibold mt-2">Fighting habits:</h5>
+                         <ul className="list-disc list-inside">
+                             {fighterAnalysis.fightingHabits.map((w, i) => <li key={i}>{w}</li>)}
+                         </ul>
+                         <h5 className="font-semibold mt-2">Fighting pattern:</h5>
+                         <ul className="list-disc list-inside">
+                             {fighterAnalysis.fightingPattern.map((w, i) => <li key={i}>{w}</li>)}
+                         </ul>
                      </InsightCard>
                      <InsightCard title={`${opponentName || 'Opponent'}'s Profile`}>
                          <h5 className="font-semibold mt-2">Style:</h5>
@@ -87,6 +95,14 @@ export const ResultsSection: React.FC<ResultsSectionProps> = ({
                          <h5 className="font-semibold mt-2">Weaknesses:</h5>
                          <ul className="list-disc list-inside">
                              {opponentAnalysis.weaknesses.map((w, i) => <li key={i}>{w}</li>)}
+                         </ul>
+                         <h5 className="font-semibold mt-2">Fighting habits:</h5>
+                         <ul className="list-disc list-inside">
+                             {opponentAnalysis.fightingHabits.map((w, i) => <li key={i}>{w}</li>)}
+                         </ul>
+                         <h5 className="font-semibold mt-2">Fighting pattern:</h5>
+                         <ul className="list-disc list-inside">
+                             {opponentAnalysis.fightingPattern.map((w, i) => <li key={i}>{w}</li>)}
                          </ul>
                      </InsightCard>
                 </div>
